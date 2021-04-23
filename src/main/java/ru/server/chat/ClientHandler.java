@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.*;
 
 public class ClientHandler {
 
@@ -15,15 +16,15 @@ public class ClientHandler {
     private DataInputStream in;
     private DataOutputStream out;
     private String nick;
+    private final long timeOut = 10;
 
 
     public ClientHandler(Engine engine, Socket socket) {
         try {
             primaryInitialize(engine, socket);
-
             new Thread(() -> {
                 try {
-                    authentication();
+                    authTimeout();
                     readMessages();
                 } catch (IOException e) {
                     System.err.println("Client " + nick + " disconnected");
@@ -35,11 +36,11 @@ public class ClientHandler {
         } catch (IOException e) {
             System.err.println("Fault create client handler");
         }
-
     }
 
     /**
      * Первичная инициализация клиента подключения
+     *
      * @param engine объект ссылка на текущий инстанс сервера Engine
      * @param socket объект ссылка на текущий сокет сервера Engine
      * @throws IOException выбрасывает исключение если один из потоков либо сокет недоступны
@@ -56,9 +57,10 @@ public class ClientHandler {
     /**
      * В цикле проверяет входящее сообщение от клиента и если оно
      * отвечает условию проводит аутентификацию на сервере
+     *
      * @throws IOException выбрасывает исключение если поток считывания недоступен
      */
-    private void authentication() throws IOException {
+    public void authentication() throws IOException {
         sendMsg("Для аутентификации напишите в чат </auth login pass>");
         while (true) {
             String fromClient = in.readUTF();
@@ -80,6 +82,7 @@ public class ClientHandler {
     /**
      * В цикле ждет сообщение от клиента, проверяет тип сообщения и реализовывает
      * соответствующую логику отправки сообщений
+     *
      * @throws IOException в случае если поток чтения недоступен
      */
     public void readMessages() throws IOException {
@@ -103,6 +106,7 @@ public class ClientHandler {
 
     /**
      * Отправка сообщения текущему клиенту
+     *
      * @param msg сообщение
      */
 
@@ -138,11 +142,45 @@ public class ClientHandler {
         }
     }
 
-    public String getNick() { return nick; }
+    /**
+     * Устанавливает временные рамки для прохождения процедуры аутентификации
+     * в случае, когда не выполняется аутентификация за указанное время, ловится
+     * исключение TimeoutException в котором клиенту отправляется сообщение об истечении
+     * времени для аутентификации и вызывается closeConnection(); разрывающий соединение.
+     * @variable long timeOut
+     */
+    public void authTimeout() {
+        ExecutorService executor = Executors.newFixedThreadPool(1);
+        Future<?> future = executor.submit(() -> {
+            try {
+                authentication();
+            } catch (IOException e) {
+                System.err.println("Fault when running authTimeout auth");
+            }
+        });
+        executor.shutdown();
+
+        try {
+            future.get(timeOut, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            System.err.println("Interrupted when authTimeout");
+        } catch (ExecutionException e) {
+            System.err.println("Execution ex when authTimeout");
+        } catch (TimeoutException e) {
+            future.cancel(true);
+            sendMsg(String.format("Тайм аут аутентификации %d сек.", timeOut));
+            closeConnection();
+        }
+    }
+
+    public String getNick() {
+        return nick;
+    }
 
     private String getDate() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Calendar cal = Calendar.getInstance();
         return dateFormat.format(cal.getTime());
     }
+
 }
