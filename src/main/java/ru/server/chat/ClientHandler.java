@@ -16,7 +16,7 @@ public class ClientHandler {
     private DataInputStream in;
     private DataOutputStream out;
     private String nick;
-    private final long timeOut = 10;
+    private final long timeOut = 120;
 
 
     public ClientHandler(Engine engine, Socket socket) {
@@ -71,6 +71,7 @@ public class ClientHandler {
                     nick = temp;
                     engine.subscribe(this);
                     engine.broadcastMsg(nick + ": зашел в чат");
+                    sendMsg("Для смены ника напишите в чат /nick <login password newNick>");
                     return;
                 } else {
                     sendMsg("Ник занят, либо неверные <логин пароль>");
@@ -91,16 +92,46 @@ public class ClientHandler {
             System.out.println("от " + nick + ": " + strFromClient);
             if (strFromClient.equals("/end")) {
                 return;
+            } else if (strFromClient.startsWith("/nick")) {
+                nickChange(strFromClient);
             } else if (strFromClient.startsWith("/w")) {
-                String[] personal = strFromClient.split(" ");
-                StringBuilder message = new StringBuilder();
-                for (int i = 2; i < personal.length; i++) {
-                    message.append(personal[i]).append(" ");
-                }
-                engine.personalMsg(message.toString(), personal[1], this);
+                personalMessage(strFromClient);
             } else {
                 engine.broadcastMsg(nick + ": " + strFromClient);
             }
+        }
+    }
+
+    /**
+     *
+     * @param strFromClient строка от клиента которая начинается с /w отправляет личное сообщение адресату
+     */
+    private void personalMessage(String strFromClient) {
+        String[] personal = strFromClient.split(" ");
+        StringBuilder message = new StringBuilder();
+        for (int i = 2; i < personal.length; i++) {
+            message.append(personal[i]).append(" ");
+        }
+        engine.personalMsg(message.toString(), personal[1], this);
+    }
+
+    /**
+     *
+     * @param strFromClient строка от клиента которая начинается с /nick запускает процедуру смены ника
+     */
+    private void nickChange(String strFromClient) {
+        String[] params = strFromClient.split(" ");
+        StringBuilder temp = new StringBuilder();
+        for (int i = 3; i < params.length; i++) {
+            temp.append(params[i]).append(" ");
+        }
+        String possibleNick = engine.getAuthService().changeNickByLoginAndPass(params[1], params[2], temp.toString());
+        if (!engine.isNickBusy(possibleNick) && !possibleNick.equals("") && !possibleNick.equals("decline")) {
+            String tempNick = nick;
+            nick = possibleNick;
+            engine.broadcastMsg(tempNick + " поменял ник на " + nick);
+        } else {
+            sendMsg("Ник занят!");
         }
     }
 
