@@ -125,7 +125,7 @@ public class ClientHandler {
         for (int i = 3; i < params.length; i++) {
             temp.append(params[i]).append(" ");
         }
-        String possibleNick = engine.getAuthService().changeNickByLoginAndPass(params[1], params[2], temp.toString());
+        String possibleNick = engine.getAuthService().changeNickByLoginAndPass(params[1], params[2], temp.toString().trim());
         if (!engine.isNickBusy(possibleNick) && !possibleNick.equals("") && !possibleNick.equals("decline")) {
             String tempNick = nick;
             nick = possibleNick;
