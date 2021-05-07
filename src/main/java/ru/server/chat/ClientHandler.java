@@ -71,6 +71,7 @@ public class ClientHandler {
                     nick = temp;
                     engine.subscribe(this);
                     engine.broadcastMsg(nick + ": зашел в чат");
+                    sendMsg("/currentUserLogin " + params[1]);
                     sendMsg("Для смены ника напишите в чат /nick <login password newNick>");
                     return;
                 } else {
