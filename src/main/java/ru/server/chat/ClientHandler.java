@@ -22,7 +22,7 @@ public class ClientHandler {
     public ClientHandler(Engine engine, Socket socket) {
         try {
             primaryInitialize(engine, socket);
-            new Thread(() -> {
+            engine.getExecutorService().submit(new Thread(() -> {
                 try {
                     authTimeout();
                     readMessages();
@@ -31,8 +31,7 @@ public class ClientHandler {
                 } finally {
                     closeConnection();
                 }
-            }).start();
-
+            }));
         } catch (IOException e) {
             System.err.println("Fault create client handler");
         }

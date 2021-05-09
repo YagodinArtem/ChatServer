@@ -5,16 +5,20 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Engine {
 
     private final int PORT = 8189;
     private List<ClientHandler> clients;
     private AuthService authService;
+    private final ExecutorService executorService;
 
     public Engine() {
         clients = new ArrayList<>();
         authService = new AuthServiceImpl();
+        executorService = Executors.newCachedThreadPool();
         authService.start();
         try (ServerSocket server = new ServerSocket(PORT)) {
             while (true) {
@@ -63,5 +67,9 @@ public class Engine {
 
     public AuthService getAuthService() {
         return authService;
+    }
+
+    public ExecutorService getExecutorService() {
+        return executorService;
     }
 }
