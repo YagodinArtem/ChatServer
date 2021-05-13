@@ -18,6 +18,7 @@ public class AuthServiceImpl implements AuthService {
         try {
             assert statement != null;
             statement.close();
+            conn.close();
             System.err.println("Auth service stopped");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
