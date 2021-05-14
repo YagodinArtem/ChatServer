@@ -1,5 +1,8 @@
 package ru.server.chat;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,41 +10,44 @@ import java.util.List;
 public class AuthServiceImpl implements AuthService {
 
     private List<User> users;
-    private Statement statement;
     private final String url = "jdbc:mysql://localhost:3306/chatusers";
     private final String username = "root";
     private final String password = "985632";
-    private Connection conn;
+    private Connection connection;
+    private SqlQue sql;
+    private static final Logger LOG = LogManager.getLogger(AuthServiceImpl.class.getName());
 
-    @Override
-    public void stop() {
-        try {
-            assert statement != null;
-            statement.close();
-            conn.close();
-            System.err.println("Auth service stopped");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
 
     @Override
     public void start() {
-        statement = getStatement();
+        initConnectionAndSqlQue();
         users = new ArrayList<>();
         try {
-            assert statement != null;
-            ResultSet rs = statement.executeQuery(SqlQueu.getAllUsers());
+            ResultSet rs = sql.getGetAllUsers().executeQuery();
             while (rs.next()) {
                 users.add(new User(
                         rs.getString(2)
                         , rs.getString(3)
                         , rs.getString(4)));
             }
-
-            System.out.println(users);
         } catch (SQLException e) {
-            System.err.println("Unable to get users list");
+            LOG.error("Unable to get users list");
+        } catch (NullPointerException n) {
+            LOG.fatal("Unable to run authorization service");
+        }
+    }
+
+    /**
+     * закрывает соединения с БД и все PreparedStatement из объекта клсса SqlQueu
+     */
+    @Override
+    public void stop() {
+        try {
+            connection.close();
+            sql.closeAllStatements();
+            LOG.info("Auth service stopped");
+        } catch (SQLException e) {
+            LOG.error("Unable to close connection");
         }
     }
 
@@ -59,22 +65,21 @@ public class AuthServiceImpl implements AuthService {
             if (u.getNick().equals(possibleNick)) return "decline";
         }
         try {
-            statement.executeUpdate(SqlQueu.nickChangeByLoginAndPass(log, pass, possibleNick));
+            sql.getNickChangeAndSetParameters(log, pass, possibleNick).executeUpdate();
             return possibleNick;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            LOG.error("Unable to changeNick");
         }
       return "";
     }
 
-    private Statement getStatement() {
+    private void initConnectionAndSqlQue() {
         try {
-            conn = DriverManager.getConnection(url, username, password);
-            System.out.println("Connection to DB successful");
-            return conn.createStatement();
+            connection = DriverManager.getConnection(url, username, password);
+            sql = new SqlQue(connection);
+            LOG.info("Connection to DB successful");
         } catch (SQLException e) {
-            System.err.println("Unable to establish connection to DB");
+            LOG.error("Unable to establish connection to DB");
         }
-        return null;
     }
 }

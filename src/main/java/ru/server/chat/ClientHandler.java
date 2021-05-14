@@ -1,5 +1,8 @@
 package ru.server.chat;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -17,6 +20,7 @@ public class ClientHandler {
     private DataOutputStream out;
     private String nick;
     private final long timeOut = 120;
+    private static final Logger LOG = LogManager.getLogger(ClientHandler.class.getName());
 
 
     public ClientHandler(Engine engine, Socket socket) {
@@ -27,14 +31,14 @@ public class ClientHandler {
                     authTimeout();
                     readMessages();
                 } catch (IOException e) {
-                    System.err.println("Client " + nick + " disconnected");
+                    LOG.info("Client " + nick + " disconnected");
                 } finally {
                     closeConnection();
                 }
             }).start();
 
         } catch (IOException e) {
-            System.err.println("Fault create client handler");
+            LOG.error("Fault create client handler");
         }
     }
 
@@ -90,7 +94,7 @@ public class ClientHandler {
     public void readMessages() throws IOException {
         while (true) {
             String strFromClient = in.readUTF();
-            System.out.println("от " + nick + ": " + strFromClient);
+            LOG.trace("от " + nick + ": " + strFromClient);
             if (strFromClient.equals("/end")) {
                 return;
             } else if (strFromClient.startsWith("/nick")) {
@@ -131,6 +135,7 @@ public class ClientHandler {
             String tempNick = nick;
             nick = possibleNick;
             engine.broadcastMsg(tempNick + " поменял ник на " + nick);
+            LOG.trace(tempNick + " поменял ник на " + nick);
         } else {
             sendMsg("Ник занят!");
         }
@@ -146,7 +151,7 @@ public class ClientHandler {
         try {
             out.writeUTF(getDate() + " " + msg);
         } catch (IOException e) {
-            System.err.println("Fault send message");
+            LOG.error("Fault send message");
         }
     }
 
@@ -187,7 +192,7 @@ public class ClientHandler {
             try {
                 authentication();
             } catch (IOException e) {
-                System.err.println("Fault when running authTimeout auth");
+                LOG.error("Fault when running authTimeout auth");
             }
         });
         executor.shutdown();
@@ -195,10 +200,11 @@ public class ClientHandler {
         try {
             future.get(timeOut, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
-            System.err.println("Interrupted when authTimeout");
+            LOG.error("Interrupted when authTimeout");
         } catch (ExecutionException e) {
-            System.err.println("Execution ex when authTimeout");
+            LOG.error("Execution ex when authTimeout");
         } catch (TimeoutException e) {
+            LOG.info(String.format("Тайм аут аутентификации %d сек.", timeOut));
             future.cancel(true);
             sendMsg(String.format("Тайм аут аутентификации %d сек.", timeOut));
             closeConnection();
