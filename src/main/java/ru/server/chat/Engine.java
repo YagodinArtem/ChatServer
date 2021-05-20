@@ -1,5 +1,8 @@
 package ru.server.chat;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -13,24 +16,30 @@ public class Engine {
     private final int PORT = 8189;
     private List<ClientHandler> clients;
     private AuthService authService;
+<<<<<<< HEAD
     private final ExecutorService executorService;
+=======
+    private static final Logger LOG = LogManager.getLogger(Engine.class.getName());
+>>>>>>> origin
 
     public Engine() {
+        LOG.info("Server started");
         clients = new ArrayList<>();
         authService = new AuthServiceImpl();
         executorService = Executors.newCachedThreadPool();
         authService.start();
         try (ServerSocket server = new ServerSocket(PORT)) {
             while (true) {
-                System.out.println("Awaiting client connection");
+                LOG.info("Awaiting client connection");
                 Socket socket = server.accept();
-                System.out.println("Client connected");
+                LOG.info("Client connected");
                 new ClientHandler(this, socket);
             }
 
         } catch (IOException e) {
-            System.err.println("Fault server initialize");
+            LOG.error("Fault server initialize");
         } finally {
+            LOG.info("Auth service stopped");
             authService.stop();
         }
     }
@@ -38,7 +47,7 @@ public class Engine {
 
     public void broadcastMsg(String msg) {
         for (ClientHandler ch : clients) {
-            System.out.println("отправили для " + ch.getNick());
+            LOG.trace("отправили для " + ch.getNick());
             ch.sendMsg(msg);
         }
     }
@@ -58,10 +67,12 @@ public class Engine {
     }
 
     public void subscribe(ClientHandler clientHandler) {
+        LOG.info(clientHandler.getNick() + " зашел в чат");
         clients.add(clientHandler);
     }
 
     public void unsubscribe (ClientHandler clientHandler) {
+        LOG.info(clientHandler.getNick() + " покинул чат");
         clients.remove(clientHandler);
     }
 
@@ -69,7 +80,10 @@ public class Engine {
         return authService;
     }
 
+<<<<<<< HEAD
     public ExecutorService getExecutorService() {
         return executorService;
     }
+=======
+>>>>>>> origin
 }

@@ -1,3 +1,8 @@
 /target/
+<<<<<<< HEAD
 /src/main/resources/META-INF/
 /out/
+=======
+/out/
+/.idea/
+>>>>>>> origin

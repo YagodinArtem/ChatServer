@@ -1,0 +1,46 @@
+INFO  2021-05-14 11:31:51 [main] ru.server.chat.Engine (Engine.java:20) - Server started
+INFO  2021-05-14 11:31:56 [main] ru.server.chat.Engine (Engine.java:26) - Awaiting client connection
+INFO  2021-05-14 11:35:18 [main] ru.server.chat.Engine (Engine.java:20) - Server started
+INFO  2021-05-14 11:35:24 [main] ru.server.chat.AuthServiceImpl (AuthServiceImpl.java:80) - Connection to DB successful
+INFO  2021-05-14 11:35:24 [main] ru.server.chat.Engine (Engine.java:26) - Awaiting client connection
+INFO  2021-05-14 11:35:25 [main] ru.server.chat.Engine (Engine.java:28) - Client connected
+INFO  2021-05-14 11:35:25 [main] ru.server.chat.Engine (Engine.java:26) - Awaiting client connection
+TRACE 2021-05-14 11:35:38 [pool-2-thread-1] ru.server.chat.Engine (Engine.java:43) - отправили для root
+TRACE 2021-05-14 11:35:51 [Thread-2] ru.server.chat.ClientHandler (ClientHandler.java:97) - от root: trace log
+TRACE 2021-05-14 11:35:51 [Thread-2] ru.server.chat.Engine (Engine.java:43) - отправили для root
+INFO  2021-05-14 11:36:07 [Thread-2] ru.server.chat.ClientHandler (ClientHandler.java:34) - Client root disconnected
+INFO  2021-05-14 12:23:07 [main] ru.server.chat.Engine (Engine.java:20) - Server started
+INFO  2021-05-14 12:23:11 [main] ru.server.chat.AuthServiceImpl (AuthServiceImpl.java:80) - Connection to DB successful
+INFO  2021-05-14 12:23:11 [main] ru.server.chat.Engine (Engine.java:26) - Awaiting client connection
+INFO  2021-05-14 12:23:28 [main] ru.server.chat.Engine (Engine.java:28) - Client connected
+INFO  2021-05-14 12:23:28 [main] ru.server.chat.Engine (Engine.java:26) - Awaiting client connection
+TRACE 2021-05-14 12:23:35 [pool-2-thread-1] ru.server.chat.Engine (Engine.java:43) - отправили для root
+TRACE 2021-05-14 12:23:52 [Thread-2] ru.server.chat.ClientHandler (ClientHandler.java:97) - от root: privet
+TRACE 2021-05-14 12:23:52 [Thread-2] ru.server.chat.Engine (Engine.java:43) - отправили для root
+TRACE 2021-05-14 12:24:02 [Thread-2] ru.server.chat.ClientHandler (ClientHandler.java:97) - от root: hello
+TRACE 2021-05-14 12:24:03 [Thread-2] ru.server.chat.Engine (Engine.java:43) - отправили для root
+TRACE 2021-05-14 12:24:09 [Thread-2] ru.server.chat.ClientHandler (ClientHandler.java:97) - от root: poka
+TRACE 2021-05-14 12:24:09 [Thread-2] ru.server.chat.Engine (Engine.java:43) - отправили для root
+INFO  2021-05-14 12:25:00 [main] ru.server.chat.Engine (Engine.java:28) - Client connected
+INFO  2021-05-14 12:25:00 [main] ru.server.chat.Engine (Engine.java:26) - Awaiting client connection
+TRACE 2021-05-14 12:25:10 [pool-3-thread-1] ru.server.chat.Engine (Engine.java:43) - отправили для root
+TRACE 2021-05-14 12:25:10 [pool-3-thread-1] ru.server.chat.Engine (Engine.java:43) - отправили для KIT
+TRACE 2021-05-14 12:25:23 [Thread-3] ru.server.chat.ClientHandler (ClientHandler.java:97) - от KIT: kto zdes
+TRACE 2021-05-14 12:25:23 [Thread-3] ru.server.chat.Engine (Engine.java:43) - отправили для root
+TRACE 2021-05-14 12:25:23 [Thread-3] ru.server.chat.Engine (Engine.java:43) - отправили для KIT
+TRACE 2021-05-14 12:25:31 [Thread-2] ru.server.chat.ClientHandler (ClientHandler.java:97) - от root: /w KIT hi
+TRACE 2021-05-14 12:25:48 [Thread-3] ru.server.chat.ClientHandler (ClientHandler.java:97) - от KIT: /w root privet
+INFO  2021-05-14 12:25:59 [Thread-3] ru.server.chat.ClientHandler (ClientHandler.java:34) - Client KIT disconnected
+TRACE 2021-05-14 12:25:59 [Thread-3] ru.server.chat.Engine (Engine.java:43) - отправили для root
+INFO  2021-05-14 12:26:16 [Thread-2] ru.server.chat.ClientHandler (ClientHandler.java:34) - Client root disconnected
+INFO  2021-05-14 12:28:00 [main] ru.server.chat.Engine (Engine.java:20) - Server started
+INFO  2021-05-14 12:28:07 [main] ru.server.chat.AuthServiceImpl (AuthServiceImpl.java:80) - Connection to DB successful
+INFO  2021-05-14 12:28:07 [main] ru.server.chat.Engine (Engine.java:26) - Awaiting client connection
+INFO  2021-05-14 12:28:07 [main] ru.server.chat.Engine (Engine.java:28) - Client connected
+INFO  2021-05-14 12:28:07 [main] ru.server.chat.Engine (Engine.java:26) - Awaiting client connection
+INFO  2021-05-14 12:28:23 [pool-2-thread-1] ru.server.chat.Engine (Engine.java:63) - root зашел в чат
+TRACE 2021-05-14 12:28:23 [pool-2-thread-1] ru.server.chat.Engine (Engine.java:43) - отправили для root
+TRACE 2021-05-14 12:28:36 [Thread-2] ru.server.chat.ClientHandler (ClientHandler.java:97) - от root: poka
+TRACE 2021-05-14 12:28:36 [Thread-2] ru.server.chat.Engine (Engine.java:43) - отправили для root
+INFO  2021-05-14 12:28:41 [Thread-2] ru.server.chat.ClientHandler (ClientHandler.java:34) - Client root disconnected
+INFO  2021-05-14 12:28:41 [Thread-2] ru.server.chat.Engine (Engine.java:68) - root покинул чат
