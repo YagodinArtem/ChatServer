@@ -1,2 +1,4 @@
 ERROR 2021-05-14 11:31:56 [main] ru.server.chat.AuthServiceImpl (AuthServiceImpl.java:82) - Unable to establish connection to DB
 FATAL 2021-05-14 11:31:56 [main] ru.server.chat.AuthServiceImpl (AuthServiceImpl.java:36) - Unable to run authorization service
+ERROR 2021-05-20 19:13:16 [main] ru.server.chat.AuthServiceImpl (AuthServiceImpl.java:82) - Unable to establish connection to DB
+FATAL 2021-05-20 19:13:16 [main] ru.server.chat.AuthServiceImpl (AuthServiceImpl.java:36) - Unable to run authorization service

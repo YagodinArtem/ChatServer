@@ -44,3 +44,5 @@ TRACE 2021-05-14 12:28:36 [Thread-2] ru.server.chat.ClientHandler (ClientHandler
 TRACE 2021-05-14 12:28:36 [Thread-2] ru.server.chat.Engine (Engine.java:43) - отправили для root
 INFO  2021-05-14 12:28:41 [Thread-2] ru.server.chat.ClientHandler (ClientHandler.java:34) - Client root disconnected
 INFO  2021-05-14 12:28:41 [Thread-2] ru.server.chat.Engine (Engine.java:68) - root покинул чат
+INFO  2021-05-20 19:13:12 [main] ru.server.chat.Engine (Engine.java:26) - Server started
+INFO  2021-05-20 19:13:16 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection

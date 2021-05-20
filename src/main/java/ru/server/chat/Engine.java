@@ -16,11 +16,11 @@ public class Engine {
     private final int PORT = 8189;
     private List<ClientHandler> clients;
     private AuthService authService;
-<<<<<<< HEAD
+
     private final ExecutorService executorService;
-=======
+
     private static final Logger LOG = LogManager.getLogger(Engine.class.getName());
->>>>>>> origin
+
 
     public Engine() {
         LOG.info("Server started");
@@ -80,10 +80,8 @@ public class Engine {
         return authService;
     }
 
-<<<<<<< HEAD
     public ExecutorService getExecutorService() {
         return executorService;
     }
-=======
->>>>>>> origin
+
 }
