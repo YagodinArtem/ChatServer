@@ -72,7 +72,6 @@ public class Engine {
     }
 
     public void unsubscribe (ClientHandler clientHandler) {
-        LOG.info(clientHandler.getNick() + " покинул чат");
         clients.remove(clientHandler);
     }
 

@@ -186,15 +186,13 @@ public class ClientHandler {
      * @variable long timeOut
      */
     public void authTimeout() {
-        ExecutorService executor = Executors.newFixedThreadPool(1);
-        Future<?> future = executor.submit(() -> {
+        Future<?> future = engine.getExecutorService().submit(() -> {
             try {
                 authentication();
             } catch (IOException e) {
-                LOG.error("Fault when running authTimeout auth");
+                LOG.info("Authorization timeout " + this);
             }
         });
-        executor.shutdown();
 
         try {
             future.get(timeOut, TimeUnit.SECONDS);
@@ -203,7 +201,6 @@ public class ClientHandler {
         } catch (ExecutionException e) {
             LOG.error("Execution ex when authTimeout");
         } catch (TimeoutException e) {
-            LOG.info(String.format("Тайм аут аутентификации %d сек.", timeOut));
             future.cancel(true);
             sendMsg(String.format("Тайм аут аутентификации %d сек.", timeOut));
             closeConnection();

@@ -46,3 +46,59 @@ INFO  2021-05-14 12:28:41 [Thread-2] ru.server.chat.ClientHandler (ClientHandler
 INFO  2021-05-14 12:28:41 [Thread-2] ru.server.chat.Engine (Engine.java:68) - root покинул чат
 INFO  2021-05-20 19:13:12 [main] ru.server.chat.Engine (Engine.java:26) - Server started
 INFO  2021-05-20 19:13:16 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:16:44 [main] ru.server.chat.Engine (Engine.java:26) - Server started
+INFO  2021-05-20 19:16:48 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:16:49 [main] ru.server.chat.Engine (Engine.java:35) - Client connected
+INFO  2021-05-20 19:16:49 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:17:05 [pool-2-thread-1] ru.server.chat.ClientHandler (ClientHandler.java:34) - Client  disconnected
+INFO  2021-05-20 19:17:05 [pool-2-thread-1] ru.server.chat.Engine (Engine.java:75) -  покинул чат
+INFO  2021-05-20 19:21:26 [main] ru.server.chat.Engine (Engine.java:26) - Server started
+INFO  2021-05-20 19:21:40 [main] ru.server.chat.Engine (Engine.java:26) - Server started
+INFO  2021-05-20 19:21:44 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:21:45 [main] ru.server.chat.Engine (Engine.java:35) - Client connected
+INFO  2021-05-20 19:21:45 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:22:05 [pool-2-thread-1] ru.server.chat.ClientHandler (ClientHandler.java:204) - Тайм аут аутентификации 20 сек.
+INFO  2021-05-20 19:22:05 [pool-2-thread-1] ru.server.chat.Engine (Engine.java:75) -  покинул чат
+INFO  2021-05-20 19:22:05 [pool-2-thread-1] ru.server.chat.ClientHandler (ClientHandler.java:34) - Client  disconnected
+INFO  2021-05-20 19:22:05 [pool-2-thread-1] ru.server.chat.Engine (Engine.java:75) -  покинул чат
+INFO  2021-05-20 19:24:05 [main] ru.server.chat.Engine (Engine.java:26) - Server started
+INFO  2021-05-20 19:24:09 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:24:15 [main] ru.server.chat.Engine (Engine.java:35) - Client connected
+INFO  2021-05-20 19:24:15 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:24:35 [pool-2-thread-1] ru.server.chat.ClientHandler (ClientHandler.java:204) - Тайм аут аутентификации 20 сек.
+INFO  2021-05-20 19:24:35 [pool-2-thread-1] ru.server.chat.Engine (Engine.java:75) -  покинул чат
+INFO  2021-05-20 19:24:35 [pool-2-thread-1] ru.server.chat.ClientHandler (ClientHandler.java:34) - Client  disconnected
+INFO  2021-05-20 19:24:35 [pool-2-thread-2] ru.server.chat.ClientHandler (ClientHandler.java:193) - Authorization timeoutru.server.chat.ClientHandler@216c2951
+INFO  2021-05-20 19:24:35 [pool-2-thread-1] ru.server.chat.Engine (Engine.java:75) -  покинул чат
+INFO  2021-05-20 19:27:03 [main] ru.server.chat.Engine (Engine.java:26) - Server started
+INFO  2021-05-20 19:27:07 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:27:18 [main] ru.server.chat.Engine (Engine.java:35) - Client connected
+INFO  2021-05-20 19:27:18 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:29:18 [pool-2-thread-1] ru.server.chat.Engine (Engine.java:75) -  покинул чат
+INFO  2021-05-20 19:29:18 [pool-2-thread-1] ru.server.chat.ClientHandler (ClientHandler.java:34) - Client  disconnected
+INFO  2021-05-20 19:29:18 [pool-2-thread-2] ru.server.chat.ClientHandler (ClientHandler.java:193) - Authorization timeout ru.server.chat.ClientHandler@39dc8c78
+INFO  2021-05-20 19:29:18 [pool-2-thread-1] ru.server.chat.Engine (Engine.java:75) -  покинул чат
+INFO  2021-05-20 19:32:38 [main] ru.server.chat.Engine (Engine.java:26) - Server started
+INFO  2021-05-20 19:32:43 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:32:43 [main] ru.server.chat.Engine (Engine.java:35) - Client connected
+INFO  2021-05-20 19:32:43 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:32:53 [pool-2-thread-1] ru.server.chat.Engine (Engine.java:75) -  покинул чат
+INFO  2021-05-20 19:32:53 [pool-2-thread-1] ru.server.chat.ClientHandler (ClientHandler.java:34) - Client  disconnected
+INFO  2021-05-20 19:32:53 [pool-2-thread-2] ru.server.chat.ClientHandler (ClientHandler.java:193) - Authorization timeout ru.server.chat.ClientHandler@35477af1
+INFO  2021-05-20 19:32:53 [pool-2-thread-1] ru.server.chat.Engine (Engine.java:75) -  покинул чат
+INFO  2021-05-20 19:35:32 [main] ru.server.chat.Engine (Engine.java:26) - Server started
+INFO  2021-05-20 19:35:36 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:35:38 [main] ru.server.chat.Engine (Engine.java:35) - Client connected
+INFO  2021-05-20 19:35:38 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:35:48 [pool-2-thread-1] ru.server.chat.ClientHandler (ClientHandler.java:34) - Client  disconnected
+INFO  2021-05-20 19:35:48 [pool-2-thread-2] ru.server.chat.ClientHandler (ClientHandler.java:193) - Authorization timeout ru.server.chat.ClientHandler@136ea61c
+INFO  2021-05-20 19:36:57 [main] ru.server.chat.Engine (Engine.java:26) - Server started
+INFO  2021-05-20 19:37:01 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:37:01 [main] ru.server.chat.Engine (Engine.java:35) - Client connected
+INFO  2021-05-20 19:37:01 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:37:17 [main] ru.server.chat.Engine (Engine.java:35) - Client connected
+INFO  2021-05-20 19:37:17 [main] ru.server.chat.Engine (Engine.java:33) - Awaiting client connection
+INFO  2021-05-20 19:39:01 [pool-2-thread-2] ru.server.chat.ClientHandler (ClientHandler.java:193) - Authorization timeout ru.server.chat.ClientHandler@22630d1f
+INFO  2021-05-20 19:39:01 [pool-2-thread-1] ru.server.chat.ClientHandler (ClientHandler.java:34) - Client  disconnected
+INFO  2021-05-20 19:39:17 [pool-2-thread-3] ru.server.chat.ClientHandler (ClientHandler.java:34) - Client  disconnected
+INFO  2021-05-20 19:39:17 [pool-2-thread-4] ru.server.chat.ClientHandler (ClientHandler.java:193) - Authorization timeout ru.server.chat.ClientHandler@76c328b4
